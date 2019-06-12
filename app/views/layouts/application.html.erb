@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>My Blog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <div class="container"> 
+    <h1><%=link_to image_tag('cat.jpg', class:'logo'), root_path %></h1>
     <%= yield %>
+    </div>
   </body>
 </html>
