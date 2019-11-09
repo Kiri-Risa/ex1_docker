@@ -1,0 +1,13 @@
+= form_for @post do |f|
+  p
+    = f.text_field :title, placeholder: 'タイトルを入力してください'
+    - if @post.errors.messages[:title].any?
+      span.error
+        = @post.errors.messages[:title][0]
+  p
+    = f.text_area :body, placeholder: '本文を入力してください'
+    - if @post.errors.messages[:body].any?
+      span.error
+        = @post.errors.messages[:body][0]
+  p
+    = f.submit
