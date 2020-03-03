@@ -2,25 +2,23 @@ class CommentsController < ApplicationController
     helper_method :post
 
     def create
-        post
-        if @post.comments.create(comment_params)
+        if post.comments.create(comment_params)
             redirect_to post_path(@post)
             flash[:notice] = "コメントを投稿しました"
         else
-            render 'show'
-            flash[:notice] = "コメントを投稿できませんでした"
+            render :show
+            flash.now[:notice] = "コメントを投稿できませんでした"
         end
     end
 
     def destroy
-        post
-        @comment = @post.comments.find(params[:id])
+        @comment = post.comments.find(params[:id])
         if @comment.destroy
             redirect_to post_path(@post)
             flash[:notice] = "コメントを削除しました"
         else
-            render 'show'
-            flash[:notice] = "コメントを削除できませんでした"
+            render :show
+            flash.now[:notice] = "コメントを削除できませんでした"
         end
     end
 
@@ -30,7 +28,7 @@ class CommentsController < ApplicationController
         end
 
         def post
-            @post = Post.find(params[:post_id])
+            @post ||= Post.find(params[:post_id])
         end
 
 end
