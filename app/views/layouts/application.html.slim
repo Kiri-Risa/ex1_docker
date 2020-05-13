@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title
+      | ブログ
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .container
+      - flash.each do |message_type, message|
+        = content_tag(:div, message, class: "alert alert-#{message_type}")
+      h1
+        =link_to image_tag('cat.jpg', class:'logo'), root_path
+      = yield
